@@ -129,10 +129,10 @@ function get_branch_num ()
 {
     git fetch --all
 
-    echo "Which branch do you wanna update?"
+    echo "Which branch do you wannt update?"
     git branch -r > ${GIT_BRANCH}
 
-    BRANCH_NUM=$(grep -c "origin" ${GIT_BRANCH})
+    BRANCH_NUM=$(grep -c "" ${GIT_BRANCH})
 
     if [ 0 == BRANCH_NUM ];
     then
@@ -144,7 +144,7 @@ function get_branch_num ()
     for(( i=1; i<${BRANCH_NUM}; i++ ));
     do
 	let j=i+1
-	echo ${i}: $(grep "origin" ${GIT_BRANCH} | sed -n ${j}p)
+	echo ${i}: $(grep "" ${GIT_BRANCH} | sed -n ${j}p)
     done
 }
 
@@ -159,7 +159,7 @@ function update_code ()
 	return ${RUN_FAIL};
     fi
 
-    BRANCH_NAME=$(grep "origin" ${GIT_BRANCH} | sed -n ${i}p)
+    BRANCH_NAME=$(grep "" ${GIT_BRANCH} | sed -n ${i}p)
 
     echo "You will update the branch" ${BRANCH_NAME} 
     git rebase ${BRANCH_NAME}
